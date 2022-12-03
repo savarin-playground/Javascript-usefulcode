@@ -1,0 +1,65 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.scene {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 500px;
+  height: 180px;
+  background: #cbf0ff;
+}
+
+.car {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  width: 64px;
+  height: 64px;
+  font-size: 58px;
+  transform: rotateY(-180deg);
+  transition: all 800ms ease-in-out;
+}
+
+.car[data-started="true"] {
+  transform: rotateY(-180deg);
+  animation-name: carAnimation;
+  animation-duration: 1s;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+}
+
+.car[data-started="true"]:after {
+  content: "...";
+  color: gray;
+  animation-name: gasAnimation;
+  animation-duration: 500ms;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  opacity: 0.7;
+}
+
+@keyframes carAnimation {
+  from {
+    transform: rotateY(-180deg) skewX(1deg) scale(1.02);
+  }
+  to {
+    transform: rotateY(-180deg) skewX(-1deg);
+  }
+}
+
+@keyframes gasAnimation {
+  0% {
+    content: "";
+  }
+  50% {
+    content: ".";
+  }
+  100% {
+    content: "..";
+  }
+}
